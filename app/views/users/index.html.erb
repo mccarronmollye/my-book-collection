@@ -1,4 +1,6 @@
-<h1>This is the Model's index page.</h1>
+<h1>All the users of the application</h1>
 <% @users.each do |user| %>
+  <p><%= user.name%></p>
   <p><%= user.email %></p>
+  <p><%= user.password %></p>
 <% end %>
