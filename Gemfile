@@ -10,11 +10,11 @@ gem 'thin'
 gem 'bcrypt'
 gem 'rails_12factor'
 gem 'foreman'
+gem 'shotgun'
 
 
 group :development do
-  gem "tux"
-  gem 'shotgun'
+  gem 'tux'
   gem 'sqlite3'
   gem 'pry'
 end
