@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   # GET: /users/new
-  get "/signup" do
+  get "/users/new" do
     erb :"/users/signup.html"
   end
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   #GET: /users/login
-  get "/login" do
+  get "/users/login" do
     erb :"/users/login.html"
   end
 
@@ -39,12 +39,34 @@ class UsersController < ApplicationController
     user = User.find_by(:email => params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      erb :"/users/account.html"
+      erb :"/users/account.html"#
       #redirect "/account"
     else
       redirect "/failure"
     end
   end
+
+  #GET: /users/logout
+  get "/users/logout" do
+    session.clear
+    redirect "/"
+  end
+
+  # GET: /users/5/edit
+  get "/users/:id/edit" do
+    erb :"/users/edit.html"
+  end
+
+  # PATCH: /users/5
+  patch "/users/:id" do
+    redirect "/users/:id"
+  end
+
+  # DELETE: /users/5/delete
+  delete "/users/:id/delete" do
+    redirect "/users"
+  end
+
 
   #GET: successful login!
   #get "/account" do
@@ -53,34 +75,5 @@ class UsersController < ApplicationController
   #  erb :"/users/account.html"
   #end
 
-  helpers do
-    def logged_in?
-      !!session[:user_id]
-    end
-
-    def current_user
-      User.find(session[:user_id])
-    end
-  end
-
-  # GET: /users/5
-#  get "/users/:id" do
-#    erb :"/show.html"
-#  end
-
-  # GET: /users/5/edit
-#  get "/users/:id/edit" do
-#    erb :"/edit.html"
-#  end
-
-  # PATCH: /users/5
-#  patch "/users/:id" do
-#    redirect "/users/:id"
-#  end
-
-  # DELETE: /users/5/delete
-#  delete "/users/:id/delete" do
-#    redirect "/users"
-#  end
 
 end
