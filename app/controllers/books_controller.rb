@@ -2,7 +2,9 @@ class BooksController < ApplicationController
 
   # GET: /books
   get "/books" do
-    if_not_logged_in_redirect_to_home
+    if_not_logged_in_redirect_to_home #1st grab a user, how can you grab all the books from user
+
+    #@books = Book.all   #where(id: current_user.id).order(:title)
     erb :"/books/index.html"
   end
 

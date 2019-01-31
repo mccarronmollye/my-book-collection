@@ -13,14 +13,6 @@ class ApplicationController < Sinatra::Base
     erb :home
   end
 
-
-  def if_not_logged_in_redirect_to_home
-    if !logged_in?
-      redirect '/'
-    end
-    end
-
-
   helpers do
     def logged_in?
       !!session[:user_id]
@@ -28,6 +20,12 @@ class ApplicationController < Sinatra::Base
 
     def current_user #used in any method and controller
       User.find(session[:user_id])
+    end
+
+    def if_not_logged_in_redirect_to_home
+      if !logged_in?
+        redirect '/'
+      end
     end
 
    end

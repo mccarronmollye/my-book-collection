@@ -1,1 +1,7 @@
 <h1>Here are all of your books:</h1>
+<%Book.where(user_id: current_user.id).find_each do |book|%> <!--#where(id: current_user.id).order(:title)-->
+<p>Title: <%=book.title%></p>
+<p>Author: <%=book.author%></p>
+<%end%>
+
+<a href="/login"">Back to your home page</a>
