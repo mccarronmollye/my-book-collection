@@ -26,14 +26,22 @@ class BooksController < ApplicationController
     if_not_logged_in_redirect_to_home
     #binding.pry
     @book = Book.find(params[:id])
-    erb :"/books/show.html"
+    if @book.user.id == current_user.id
+      erb :"/books/show.html"
+    else
+      redirect to "/books"
+    end   
   end
-
   # GET: /books/5/edit Ensure that users can edit and delete only their own resources - not resources created by other users.
   get "/books/:id/edit" do
     if_not_logged_in_redirect_to_home
+
     @book = Book.find(params[:id]) #w/o this line of code it breaks!!!
-    erb :"/books/edit.html"
+    if @book.user.id == current_user.id
+      erb :"/books/edit.html"
+    else
+      redirect to "/books"
+    end
   end
 
   # PATCH: /books/5

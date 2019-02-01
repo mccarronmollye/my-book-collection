@@ -24,42 +24,6 @@ class UsersController < ApplicationController
     end
   end
 
-  #failure redirect
-  get "/failure" do
-    erb :"/users/failure.html"
-  end
-
-  #GET: /users/login
-  get "/users/login" do
-    if logged_in?
-      redirect "/account" #redirects to home page if user is already logged in.
-    else
-      erb :"/users/login.html"
-    end
-  end
-
-  #POST: /login
-  post "/login" do
-    user = User.find_by(:email => params[:email])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      #erb :"/users/account.html"#
-      redirect "/account"
-    else
-      redirect "/failure"
-    end
-  end
-
-  get "/account" do
-    erb :"/users/account.html"
-  end
-
-  #GET: /users/logout
-  get "/users/logout" do
-    session.clear
-    redirect "/"
-  end
-
   # GET: /users/5
   get "/users/:id" do
     if_not_logged_in_redirect_to_home
