@@ -2,9 +2,13 @@
 <%Book.where(user_id: current_user.id).find_each do |book|%> <!--#where(id: current_user.id).order(:title)-->
 <ul>
   <li>Title: <a href="books/<%=book.id%>"><%=book.title%></a>
-    <p>Author: <%=book.author%></p>
+    <p>Author: <%=book.author%><br>
+    Genre: <%=book.genre%></p>
   </li>
 </ul>
 <%end%>
 
-<a href="/account">Back to your home page</a>
+<h5>
+  <a href="/books/new">Add a book to my book collection</a>
+  <br><a href="/account">Back to my home page</a>
+</h5>

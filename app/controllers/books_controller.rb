@@ -32,18 +32,27 @@ class BooksController < ApplicationController
   # GET: /books/5/edit
   get "/books/:id/edit" do
     if_not_logged_in_redirect_to_home
+    @book = Book.find(params[:id]) #w/o this line of code it breaks!!!
     erb :"/books/edit.html"
   end
 
   # PATCH: /books/5
   patch "/books/:id" do
     if_not_logged_in_redirect_to_home
-    redirect "/books/:id"
+    @book = Book.find(params[:id])
+    @book.title = params[:title]
+    @book.author = params[:author]
+    @book.genre = params[:genre]
+    @book.status = params[:status]
+    @book.save
+    redirect to "/books/#{@book.id}"
   end
 
-  # DELETE: /books/5/delete
-  delete "/books/:id/delete" do
+  # DELETE: /books/5
+  delete "/books/:id" do
     if_not_logged_in_redirect_to_home
-    redirect "/books"
+    @book = Book.find_by_id(params[:id])
+    @book.delete
+    redirect to "/books"
   end
 end
