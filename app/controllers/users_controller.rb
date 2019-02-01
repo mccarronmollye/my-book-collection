@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.create(params[:user])
 
     if @user.save
-      redirect "/login"
+      redirect "/users/login"
     else
       redirect "/failure"
     end
@@ -31,7 +31,11 @@ class UsersController < ApplicationController
 
   #GET: /users/login
   get "/users/login" do
-    erb :"/users/login.html"
+    if logged_in?
+      redirect "/account" #redirects to home page if user is already logged in.
+    else
+      erb :"/users/login.html"
+    end
   end
 
   #POST: /login
@@ -81,18 +85,11 @@ class UsersController < ApplicationController
   end
 
   # DELETE: /users/5/delete
-  delete "/users/:id/delete" do
+  delete "/users/:id" do
     if_not_logged_in_redirect_to_home
-    redirect "/users"
+    @user = User.find_by_id(params[:id])
+    @user.delete
+    redirect "/users/logout" #redirected to application's home page
   end
-
-
-  #GET: successful login!
-  #get "/account" do
-  #  binding.pry
-  #  @user = User.find(session[:user_id])
-  #  erb :"/users/account.html"
-  #end
-
 
 end

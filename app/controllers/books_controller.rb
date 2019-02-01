@@ -29,7 +29,7 @@ class BooksController < ApplicationController
     erb :"/books/show.html"
   end
 
-  # GET: /books/5/edit
+  # GET: /books/5/edit Ensure that users can edit and delete only their own resources - not resources created by other users.
   get "/books/:id/edit" do
     if_not_logged_in_redirect_to_home
     @book = Book.find(params[:id]) #w/o this line of code it breaks!!!
