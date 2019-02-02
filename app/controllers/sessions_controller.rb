@@ -23,11 +23,11 @@ class SessionsController < ApplicationController
 
   #failure redirect
   get "/failure" do
-    erb :"/users/failure.html"
+    erb :"/sessions/failure.html"
   end
 
   get "/account" do
-    erb :"/users/account.html"
+    erb :"/sessions/account.html"
   end
 
   #GET: /users/logout
