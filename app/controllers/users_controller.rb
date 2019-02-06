@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   post "/users" do
     @user = User.create(params[:user])
 
-    if @user.save
+    if @user.save 
       redirect "/users/login"
     else
       redirect "/failure"
