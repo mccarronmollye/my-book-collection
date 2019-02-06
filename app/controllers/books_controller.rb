@@ -3,14 +3,14 @@ class BooksController < ApplicationController
   # GET: /books #DONE
   get "/books" do
     if_not_logged_in_redirect_to_home #1st grab a user, how can you grab all the books from user
-    erb :"/books/index.html"
+    erb :"/books/index"
   end
 
   # GET: /books/new
   get "/books/new" do
     if_not_logged_in_redirect_to_home
 
-    erb :"/books/new.html"
+    erb :"/books/new"
   end
 
   # POST: /books
@@ -27,7 +27,7 @@ class BooksController < ApplicationController
     #binding.pry
     @book = Book.find(params[:id])
     if @book.user.id == current_user.id
-      erb :"/books/show.html"
+      erb :"/books/show"
     else
       redirect to "/books"
     end
@@ -38,7 +38,7 @@ class BooksController < ApplicationController
 
     @book = Book.find(params[:id]) #w/o this line of code it breaks!!!
     if @book.user.id == current_user.id
-      erb :"/books/edit.html"
+      erb :"/books/edit"
     else
       redirect to "/books"
     end

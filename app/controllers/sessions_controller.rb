@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     if logged_in?
       redirect "/account" #redirects to home page if user is already logged in.
     else
-      erb :"/sessions/login.html"
+      erb :"/sessions/login"
     end
   end
 
@@ -23,11 +23,11 @@ class SessionsController < ApplicationController
 
   #failure redirect
   get "/failure" do
-    erb :"/sessions/failure.html"
+    erb :"/sessions/failure"
   end
 
   get "/account" do
-    erb :"/sessions/account.html"
+    erb :"/sessions/account"
   end
 
   #GET: /users/logout
