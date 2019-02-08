@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  #GET: /sessions/login
+
   get "/login" do
     if logged_in?
       redirect "/account" #redirects to home page if user is already logged in.
@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  #POST: /sessions/login
+
   post "/sessions/login" do
     user = User.find_by(:email => params[:email])
     if user && user.authenticate(params[:password])#authenticates user based of user submitted.

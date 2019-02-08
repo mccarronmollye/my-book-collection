@@ -6,14 +6,14 @@ class BooksController < ApplicationController
     erb :"/books/index"
   end
 
-  # GET: /books/new
+
   get "/books/new" do
     if_not_logged_in_redirect_to_home
 
     erb :"/books/new"
   end
 
-  # POST: /books
+
   post "/books" do
     if_not_logged_in_redirect_to_home
     @book = Book.create(params)
@@ -21,7 +21,7 @@ class BooksController < ApplicationController
     redirect "/books"
   end
 
-  # GET: /books/5
+
   get "/books/:id" do
     if_not_logged_in_redirect_to_home
     #binding.pry
@@ -32,7 +32,7 @@ class BooksController < ApplicationController
       redirect to "/books"
     end
   end
-  # GET: /books/5/edit Ensure that users can edit and delete only their own resources - not resources created by other users.
+  # GET /books/5/edit Ensure that users can edit and delete only their own resources - not resources created by other users.
   get "/books/:id/edit" do #route url, route variable, part of dynamic route
     if_not_logged_in_redirect_to_home
 
@@ -44,7 +44,7 @@ class BooksController < ApplicationController
     end
   end
 
-  # PATCH: /books/5
+
   patch "/books/:id" do
     if_not_logged_in_redirect_to_home
     @book = Book.find(params[:id])
@@ -56,7 +56,7 @@ class BooksController < ApplicationController
     redirect to "/books/#{@book.id}"
   end
 
-  # DELETE: /books/5
+
   delete "/books/:id" do
     if_not_logged_in_redirect_to_home
     @book = Book.find_by_id(params[:id])
