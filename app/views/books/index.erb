@@ -1,5 +1,5 @@
 <h1>Here are all of your books:</h1>
-<%Book.where(user_id: current_user.id).each do |book|%> <!--#where(id: current_user.id).order(:title)-->
+<%@books.each do |book|%> <!--#where(id: current_user.id).order(:title)-->
 <ul>
   <li>Title: <a href="books/<%=book.id%>"><%=book.title%></a>
     <p>Author: <%=book.author%><br>
